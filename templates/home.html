@@ -30,10 +30,10 @@
          {% if filename %}
             <div class="container col-md-5">
                 <div class="d-flex justify-content-between align-items-center">
-                    <button type="button" class="btn btn-secondary" onclick="filter1()">Filter 1</button>
-                    <button type="button" class="btn btn-secondary">Filter 2</button>
-                    <button type="button" class="btn btn-secondary">Filter 3</button>
-                    <button type="button" class="btn btn-secondary">Filter 4</button>
+                    <button type="button" class="btn btn-secondary" id="filter1">Blur</button>
+                    <button type="button" class="btn btn-secondary" id="filter2">Sepia</button>
+                    <button type="button" class="btn btn-secondary" id="filter3">Warm</button>
+                    <button type="button" class="btn btn-secondary" id="filter4">Cold</button>
                     <button type="button" class="btn btn-secondary">Filter 5</button>
                 </div>
             </div>
@@ -47,9 +47,8 @@
             </div>
         {% endif %}
             
-        {% if filename %}
-            <div class="container mt-5 d-flex">
-                <img src="{{ url_for('filter1', filename=filename) }}" class="img-fluid mx-auto d-block" />
-            </div>
-        {% endif%}
+    
+        <div class="container mt-5 d-flex">
+            <img src="" id="filtered" class="img-fluid mx-auto d-block" />
+        </div>
 {% endblock %}

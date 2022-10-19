@@ -2,7 +2,7 @@ from fileinput import filename
 import os, re
 from flask import Flask, flash, render_template, request, redirect, url_for
 from werkzeug.utils import secure_filename
-from filters.functions import blur_image 
+from filters.functions import blur_image, sepia, warm, cold
 
 app = Flask(__name__)
 
@@ -44,7 +44,23 @@ def display_image(filename):
 @app.route('/filter/<filename>')
 def filter1(filename):
     blur_image(app.config['UPLOAD_PATH'] + filename)
-    return redirect(url_for('static', filename='filtered_images/' + filename), code=301)
+    return filename
+
+@app.route('/sepia/<filename>')
+def filter2(filename):
+    sepia(app.config['UPLOAD_PATH'] + filename)
+    return filename
+
+@app.route('/warm/<filename>')
+def filter3(filename):
+    warm(app.config['UPLOAD_PATH'] + filename)
+    return filename
+
+@app.route('/cold/<filename>')
+def filter4(filename):
+    cold(app.config['UPLOAD_PATH'] + filename)
+    return filename
+
 
 if __name__ == '__main__':
     app.run()
