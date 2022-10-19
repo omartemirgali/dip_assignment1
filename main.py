@@ -1,6 +1,8 @@
+from fileinput import filename
 import os, re
 from flask import Flask, flash, render_template, request, redirect, url_for
 from werkzeug.utils import secure_filename
+from filters.functions import blur_image 
 
 app = Flask(__name__)
 
@@ -38,6 +40,11 @@ def upload_image():
 @app.route('/display/<filename>')
 def display_image(filename):
     return redirect(url_for('static', filename='uploads/' + filename), code=301)
+
+@app.route('/filter/<filename>')
+def filter1(filename):
+    blur_image(app.config['UPLOAD_PATH'] + filename)
+    return redirect(url_for('static', filename='filtered_images/' + filename), code=301)
 
 if __name__ == '__main__':
     app.run()
