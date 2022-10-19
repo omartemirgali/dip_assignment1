@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+    <form action="/" enctype="multipart/form-data" method="POST">
+        <div class="container col-md-6">
+            
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-secondary mt-5" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                    {% endif %}
+                {% endwith %}   
+                                     
+            <div class="mb-5 mt-3">
+                <label for="Image" class="form-label">Upload image</label>
+                <div class="d-flex justify-content-between align-items-center">
+                    <input class="form-control mr-2" type="file" name="file" autocomplete="off" required>
+                    <input type="submit" value="Submit" class="btn btn-primary ml-2">
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="container">
+        {% if filename %}
+            <img src="{{ url_for('display_image', filename=filename) }}" class="img-fluid mx-auto d-block" />
+        {% endif %}
+    </div>
+
+</main>
+{% endblock %}
