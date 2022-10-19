@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}
+    FilterPRO
+{% endblock %}
+
 {% block content %}
 <main>
     <form action="/" enctype="multipart/form-data" method="POST">
@@ -25,9 +29,23 @@
         </div>
     </form>
 
-    <div class="container">
+    <div class="container col-md-5">
+        <div class="d-flex justify-content-between align-items-center">
+            <button type="button" class="btn btn-light">Filter 1</button>
+            <button type="button" class="btn btn-light">Filter 2</button>
+            <button type="button" class="btn btn-light">Filter 3</button>
+            <button type="button" class="btn btn-light">Filter 4</button>
+            <button type="button" class="btn btn-light">Filter 5</button>
+            <button type="button" class="btn btn-light">Reset</button>
+        </div>
+    </div>
+
+    <div class="container mt-5 d-flex">
         {% if filename %}
             <img src="{{ url_for('display_image', filename=filename) }}" class="img-fluid mx-auto d-block" />
+        {% else %}
+            <img src="/static/images/original-img.png" class="img-fluid mx-auto d-block" />
+            <img src="/static/images/filtered-img.png" class="img-fluid mx-auto d-block" />
         {% endif %}
     </div>
 
